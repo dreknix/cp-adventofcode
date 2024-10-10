@@ -1,7 +1,7 @@
 # Advent of Code
 
 This repository contains tools and solutions for the
-[https://adventofcode.com](Advent of Code) events.
+(Advent of Code)[https://adventofcode.com] events.
 
 ## License
 
