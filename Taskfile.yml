@@ -1,0 +1,32 @@
+---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+# https://taskfile.dev
+
+version: '3'
+
+dotenv: ['.env']
+
+tasks:
+
+  get_input:
+    desc: Get input from website
+    preconditions:
+      - sh: '[ "{{.CLI_ARGS}}" != "" ]'
+        msg: '.CLI_ARGS is not set: must be <year> and <day>'
+    cmds:
+      - http
+          GET
+          https://adventofcode.com/{{.YEAR}}/day/{{.DAY}}/input
+          Cookie:session="{{.SESSION}}"
+    vars:
+      YEAR: >-
+        {{- if ge (len (splitArgs .CLI_ARGS)) 1 -}}
+          {{ index (splitArgs .CLI_ARGS) 0 }}
+        {{- end -}}
+      DAY: >-
+        {{- if ge (len (splitArgs .CLI_ARGS)) 2 -}}
+          {{ index (splitArgs .CLI_ARGS) 1 }}
+        {{- end -}}
+
+    silent: true
+...
