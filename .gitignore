@@ -1,1 +1,5 @@
+# ignore session cookie
 .env
+
+# ignore all input and output files
+*.txt
